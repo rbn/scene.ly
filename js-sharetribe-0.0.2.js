@@ -9,12 +9,12 @@
 <script>
 jQuery(function() { 
 
-  // initial setup
+  $('b:contains("LinkedIn")').closest('div').each(function() {
+     var text = $(this).text().replace('LinkedIn Profile:', '');
+     $(this).empty();
+     $(this).append('LinkedIn Profile: <a href="' + text + '" >' + text + '</a>')
+  });
 
-  // google hangouts
-  if (window.location.href.indexOf("transactions") > -1) {
 
-     $('.g-hangout-container').show();
-  }
 });
 </script>
