@@ -118,6 +118,8 @@ jQuery(function() {
     '<ul><li>you must have a calendly account for scheduling appointments</li>' + 
     '<li>you must have a linked in account</li>' + 
     '<li>you must agree to the terms and conditions of becoming a host.  please review here(make link)</li></ul></div>');
+    
+   $('label.input[for="listing_description"]').text('Brief bio. Tell people why you are doing this and what makes you qualified.');
   
   // -------------------------
 
@@ -132,7 +134,13 @@ jQuery(function() {
      return old
          .replace('hour', '30 mins');
   });
+  
+  $('label.quantity-label').text(function (i, old) {
+     return old
+         .replace('hours', '30 min blocks');
+  });
   // -----------------------------------
+  
   
 });
 </script>
