@@ -3,17 +3,24 @@
 
 .marketplace-lander .marketplace-title-header h1 { color: #fff !important; }
 
-div#host-disclaimer { background:rgba(62, 40, 173, 0.4) !important; padding: 18px; color:white; }
+div#host-disclaimer { color:#000; border: 3px solid blue;  padding: 8px; }
 
 .home-fluid-thumbnail-grid-author {display:none;}
 
 div.quantity-description { display: none; }
 
 .price-container > label:after { content: " per 30 minutes"; }
+
+label[for="listing_title"]:after { content: " (please put your first name and role you think best describes you)"; }
+
+label[for="listing_description"] { text-transform: lowercase; }
+label[for="listing_description"]:before { content: "Brief Bio and "; }
+label[for="listing_description"]:after { content: " of how you can help a potential buyer "; }
+
 </style>
+
 <script src="https://apis.google.com/js/platform.js" async defer></script>
-<div class="g-hangout-container" style="display:none">
-<div class="g-hangout" data-render="createhangout"></div><script
+<script
   src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
   integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
   crossorigin="anonymous" ></script>
@@ -36,7 +43,10 @@ jQuery(function() {
    // -------- listing page --------------
    
    $('div.listing-author').closest('div.row-with-divider').hide();
+   
+   $('a.home-toolbar-button-group-button[title="List"]').hide();
    // -----------------------------------
+   
    
    // ------------ landing page - logged in -------------
    
@@ -50,16 +60,14 @@ jQuery(function() {
    var $div_marketplace = $('<div class="title-container">' + 
       '<div class="title-header-wrapper">' +
       '<div class="marketplace-title-header">' +
-      '<h1>Find a scene coach to practice your mock interview</h1>' +
+      '<h1>Find a scene coach to practice with today<br /><em>Hire peers to start deliberately practicing for your next performance<em></h1>' +
       '</div>' +
       '</div>' +
       '</div>');
       
    if ( ! $('section.marketplace-lander').children().length ){   
     $('section.marketplace-lander').prepend($div_marketplace).prepend($cover_image);
-   }
-   
-   
+   }     
    // -------------------------------------
    
   
@@ -114,13 +122,13 @@ jQuery(function() {
   
   
   // ---- new listing form ---
-  $('div#new_listing_form').prepend('<div id="host-disclaimer"><h1 style="color:white !important">A note about becoming a scene coach</h1>' + 
-    '<ul><li>you must have a calendly account for scheduling appointments</li>' + 
-    '<li>you must have a linked in account</li>' + 
-    '<li>you must agree to the terms and conditions of becoming a host.  please review here(make link)</li></ul></div>');
+  $('div#new_listing_form').prepend('<div id="host-disclaimer"><h2 style="text-align:center">A note about becoming a scene coach</h2>' + 
+    '<ul><li>You need to have registered for a <a href="https://calendly.com/" target="_blank">calendly</a> account and have it kept up to date for buyers to schedule time with you</li>' + 
+    '<li>You must have a linked in account</li>' + 
+    '<li>By completing this hosting form you agree to the terms and conditions of becoming a host.  Please review here (make link)</li></ul></div>');
     
    $('label.input[for="listing_description"]').text('Brief bio. Tell people why you are doing this and what makes you qualified.');
-  
+   
   // -------------------------
 
 
@@ -141,6 +149,45 @@ jQuery(function() {
   });
   // -----------------------------------
   
+  // --- hide/move the "become a coach" button
+  $('#topbar-container').find('a.AddNewListingButton').hide();
+  
+  // -----------------------------------------
+  
+  // -------- footer ------------------
+  $('div.branding-content').html('learn more about scene.ly');
+  // ----------------------------------
+  
+  // --- Top Links
+   $('a[data-pid="About 0"]').closest('div').css('width', function() {    
+    return parseInt($(this).css('width')) + 50;
+   });
+   $('a[data-pid="About 0"]').text("About scene.ly");
+   $('a[data-pid="Contact us 1"]').text("Become a coach").attr('href', '/en/infos/how_to_use');
+  $('a[data-pid="Invite new members 2"]').text("Contact").attr('href', '/en/user_feedbacks/new');
+  // ---------
+  
+  // --- Sidebar Links on "About"
+   $('a[title="How it works"]').find('div.left-navi-link-text').text('Become a coach');
+   $('.icon-with-text-container').hide();
+  // -----------
+
+  
+  // --- Become a host page ---
+  
+  $('#about_page_content').html('<h2>You can provide a service to others based on your professional experience!</h2>' + 
+  '<p>here are the reasons why you should coach</p>' + 
+  '<p>here is what the responsibility entails</p>' + 
+  '<p>here is what you need to get started</p>');
+   
+   var $button = $('a.AddNewListingButton').first().detach().appendTo('#about_page_content').show().css('width', '150px');;
+  
+   $('#about_page_content').find('span').first().show();
+   $('#about_page_content').find('span').first().next().css('color', '#fff').css('padding', '0 10px 0 10px');
+   
+   $button.css('background-color', 'black !important');  
+  
+  // --------------------------
   
 });
 </script>
