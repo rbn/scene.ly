@@ -4,7 +4,7 @@
   .no-cover-photo.page-content {display: none; }
 
   .marketplace-lander .marketplace-title-header h1 { color: #fff !important;} 
-
+  
   .marketplace-lander p {
       font-size: 1.625em;
       line-height: 1.38462em;
@@ -16,7 +16,7 @@
   .marketplace-lander .marketplace-lander-content-title {
       margin-bottom: 0;
       margin-top: 0;
-      font-size: 4.25em;
+      font-size: 3.2em;
       line-height: 1.05882em;
       font-weight: 100;
       line-height: 0.9375em;
@@ -228,7 +228,7 @@ h6 {
 
 .reasons-cover {
     padding-top: 80px;
-    padding-bottom: 100px;
+    padding-bottom: 200px;
 }
 
 .page-content { margin-top:25px; }
