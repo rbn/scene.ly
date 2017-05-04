@@ -1,5 +1,7 @@
   <style>
   .marketplace-lander .coverimage-fade  { background:rgba(62, 40, 173, 0.4) !important; }
+  
+  .no-cover-photo.page-content {display: none; }
 
   .marketplace-lander .marketplace-title-header h1 { color: #fff !important;} 
 
@@ -145,7 +147,8 @@ h2.centered {
     max-width: 700px;
     width: 95%;
     text-align: center;
-    margin: 0 auto 40px
+    margin: 0 auto 40px;
+    font-size:2em;
 }
 h2.centered.tablet,
 h2.centered.mobile {
@@ -176,13 +179,18 @@ h6 {
 }
 .icon-hexagon-bg {
     height: auto;
-    margin-bottom: 30px;
+    margin-bottom: 5px;
     background: url("https://www.sharetribe.com/images/svg/hexagon.36556566.svg") no-repeat center center
+}
+
+.icon-nonhex-bg {
+    height: auto;
+    margin-bottom: 5px;
 }
 
 .icon-arrow-bg {
     height: auto;
-    margin-bottom: 30px;
+    margin-bottom: 0px;
 }
 
 .icon-hexagon {
@@ -192,6 +200,38 @@ h6 {
     position: relative
 }
 
+.icon-hexagon-find {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+    position: relative;
+    /* filter:grayscale(100%); */
+    clip: rect(0px,0px,150px,0px);
+}
+
+.main-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    padding-bottom: 200px;
+}
+
+
+.main-wrapper-five {
+    width:100%
+    margin: 0 auto;
+    position: relative;
+    padding-bottom: 200px;
+}
+
+
+
+.reasons-cover {
+    padding-top: 80px;
+    padding-bottom: 100px;
+}
+
+.page-content { margin-top:25px; }
 
   </style>
 
@@ -207,6 +247,12 @@ h6 {
   /* scene.ly namespace and javascript object */
   var SCN = {};
 
+  SCN.root = ( location.pathname == "/" );
+  
+  SCN.authenticated = function() {
+    return !$('a[href="/en/signup"]').is(':visible');
+  }
+  
   SCN.get_qs_param = function getURLParameter(name) {
                           return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
                         };
@@ -251,49 +297,88 @@ h6 {
 
   jQuery(function() { 
 
-    // --- home page (grid) ----
-    $('.home-toolbar').prepend('<div style="vertical-align:top;padding-bottom:20px;"><h1 style="display:inline;position:absolute;font-weight:bold;font-family:Helvetica,Roboto,Arial,sans-serif;font-weight:200;">Who do you want to practice with today?</h1></div>');
-    
-    // --------------------------
-    
+   
     // --- Home Page Customizations ---
     
-    $('section.marketplace-lander').after('<div class="main-cover reasons-cover">' +
-  '<div class="main-wrapper reasons-wrapper">' +
-   '<h6 class="reasons">How it works</h6>' +
-   '<div class="reason">' +
-   '  <div class="icon-hexagon-bg">' +
-   '    <img class="icon-hexagon-find" src="http://icons.iconarchive.com/icons/graphicloads/100-flat-2/256/find-icon.png" alt="">' +
-   '    </div> <p>' +
-   '      <strong>Find a coach</strong>Working professionals ready to listen and provide feedback</p>' +
-   '  </div>' +
-   '<div class="reason">' +
-   '  <div class="icon-arrow-bg">' +
-   '    <img class="svg icon-hexagon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Clock_simple_white.svg/2000px-Clock_simple_white.svg.png" height="40px" width-"40px">' +
-   '    </div> <p>' +
-   '      <strong></strong></p>' +
-   '  </div>' +
-   '<div class="reason">' +
-   '  <div class="icon-hexagon-bg">' +
-   '    <img class="svg icon-hexagon" src="https://www.sharetribe.com/images/icons/timer.048700d4.svg" alt="">' +
-   '    </div> <p>' +
-   '      <strong>Book a time</strong>Coordinate a time to speak</p>' +
-   '  </div>' +
-     '<div class="reason">' +
-   '  <div class="icon-arrow-bg">' +
-   '    <img class="svg icon-hexagon" src="http://egiveusa.com/appdev/images/icons/icomoon/svg/arrow-right3.svg">' +
-   '    </div> <p>' +
-   '      <strong></strong></p>' +
-   '  </div>' +
-    '<div class="reason">' +
-   '  <div class="icon-hexagon-bg">' +
-   '    <img class="svg icon-hexagon" src="https://www.sharetribe.com/images/icons/timer.048700d4.svg" alt="">' +
-   '    </div> <p>' +
-   '      <strong>Rehearse online</strong>Converse and rehearse in one of scene.ly\'s dedicated virtual rooms</p>' +
-   '  </div>' +
-   '        <div class="clear"/>' +
-   '      </div>');
     
+    if ( SCN.root && !SCN.authenticated() ) {
+              
+        $('section.marketplace-lander').after('<div id="how_it_works" class="main-cover reasons-cover">' +
+          '<div class="main-wrapper reasons-wrapper">' +
+           '<h6 class="reasons">How it works</h6>' +
+           '<h2 class="centered">Find a coach, set a time, make a scene</h2>' + 
+           '<div class="reason">' +
+           '  <div class="icon-nonhex-bg">' +
+           '    <img class="icon-hexagon-find" src="https://image.freepik.com/free-vector/people-search_23-2147502905.jpg" alt="">' +
+           '    </div> <p>' +
+           '      <strong>Browse listings</strong>Find a coach from our network that you want to rehearse with</p>' +
+           '  </div>' +
+             '<div class="reason">' +
+           '  <div class="icon-arrow-bg">' +
+           '    <img class="svg icon-hexagon" src="https://d1j8zk9fzkkk7a.cloudfront.net/assets/gray_arrow_up-fd6fc04e05435409e67879a9cc1abd055ea67f587424ccc75d7c61d7aecbc0d7.svg">' +
+           '    </div> <p>' +
+           '      <strong></strong></p>' +
+           '  </div>' +
+          '<div class="reason">' +
+           '  <div class="icon-nonhex-bg">' +
+           '    <img class="icon-hexagon-find" src="https://image.freepik.com/free-vector/schedule-background-design_1300-254.jpg" alt="">' +
+           '    </div> <p>' +
+           '      <strong>Schedule a scene</strong>Purchase time and schedule with your scene coach</p>' +
+           '  </div>' +
+             '<div class="reason">' +
+           '  <div class="icon-arrow-bg">' +
+           '    <img class="svg icon-hexagon" src="https://d1j8zk9fzkkk7a.cloudfront.net/assets/gray_arrow_up-fd6fc04e05435409e67879a9cc1abd055ea67f587424ccc75d7c61d7aecbc0d7.svg">' +
+           '    </div> <p>' +
+           '      <strong></strong></p>' +
+           '  </div>' +
+           '<div class="reason">' +
+           '  <div class="icon-nonhex-bg">' +
+           '    <img class="icon-hexagon-find" src="https://image.freepik.com/free-vector/people-with-speech-bubbles_23-2147504958.jpg" alt="">' +
+           '    </div> <p>' +
+           '      <strong>Rehearse online</strong>scene.ly creates a dedicated virtual room for you to rehearse in</p>' +
+           '  </div>' +
+           '        <div class="clear"/>' +
+           '      </div>');
+           
+         $('#how_it_works').after('<div id="five-reasons" class="main-cover-five reasons-cover">' +
+          '<div class="main-wrapper-five reasons-wrapper-five">' +
+           '<h6 class="reasons" style="max-width:1100px">5 reasons to use scene.ly</h6>' +
+           '<h2 class="centered">“For the things we have to learn before we can do them, we learn by doing them.” <span style="font-style:italic;font-size:.7em;">-Aristotle</span></h2>' + 
+           '<div class="reason">' +
+           '  <div class="icon-hexagon-bg">' +
+           '   <img class="svg icon-hexagon" src="https://www.sharetribe.com/images/icons/timer.048700d4.svg" alt=""> ' +
+           '    </div> <p>' +
+           '      <strong>Develop muscle memory</strong>that only comes with repeated practice</p>' +
+           '  </div>' +
+            '<div class="reason">' +
+           '  <div class="icon-hexagon-bg">' +
+           '   <img class="svg icon-hexagon" src="https://www.sharetribe.com/images/icons/timer.048700d4.svg" aalt=""> ' +
+           '    </div> <p>' +
+           '      <strong>Take risks</strong>by connecting with someone somewhere not where you are!</p>' +
+           '  </div>' +
+            '<div class="reason">' +
+           '  <div class="icon-hexagon-bg">' +
+           '   <img class="svg icon-hexagon" src="https://www.sharetribe.com/images/icons/timer.048700d4.svg" alt=""> ' +
+           '    </div> <p>' +
+           '      <strong>Get an honest assessment</strong>Afraid your friends won\'t tell it to you straight?  Our coaches will!</p>' +
+           '  </div>' +
+            '<div class="reason">' +
+           '  <div class="icon-hexagon-bg">' +
+           '   <img class="svg icon-hexagon" src="https://www.sharetribe.com/images/icons/timer.048700d4.svg" alt=""> ' +
+           '    </div> <p>' +
+           '      <strong>Personalized Feedback</strong>scenes are devoted entirely to you</p>' +
+           '  </div>' +
+            '<div class="reason">' +
+           '  <div class="icon-hexagon-bg">' +
+           '   <img class="svg icon-hexagon" src="https://www.sharetribe.com/images/icons/timer.048700d4.svg" alt=""> ' +
+           '    </div> <p>' +
+           '      <strong>Develop ongoing relationships</strong>to gain trusted advisors and mentorship</p>' +
+           '  </div>' +
+           '        <div class="clear"/>' +
+           '      </div>');
+
+    }
+   
     // --------------------------------
 
     // ------------ view profile page -------------
@@ -321,6 +406,7 @@ h6 {
      // --- edit and new forms ---
 
         // nothing yet
+        
      // -------------------------
      
      
@@ -334,7 +420,7 @@ h6 {
       '</div>');
      
      
-    if ( location.pathname == "/" ) {
+    if ( SCN.root ) {
       $('section.marketplace-lander').html('').append('<div class="coverimage">' +
             '<figure class="marketplace-cover fluidratio">' +
             '<div class="lander-content marketplace-lander-content">' +
@@ -343,6 +429,10 @@ h6 {
             '</div>' +
             '</figure>' +
             '</div>');
+            
+      $('.no-cover-photo.page-content').show();
+      $('.page-content').find('.wrapper').prepend('<h6 class="reasons" style="max-width:1100px">Get started</h6>' +
+           '<h2 class="centered">Start browsing listings below to find a coach today!<span style="font-style:italic;font-size:.7em;"></span></h2>');
     }
         
      if ( ! $('section.marketplace-lander').children().length ){   
