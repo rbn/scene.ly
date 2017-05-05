@@ -143,7 +143,7 @@
 }
 
 h2.centered {
-    padding-bottom: 50px;
+    padding-bottom: 20px;
     max-width: 700px;
     width: 95%;
     text-align: center;
@@ -186,6 +186,7 @@ h6 {
 .icon-nonhex-bg {
     height: auto;
     margin-bottom: 5px;
+    overflow: hidden;
 }
 
 .icon-arrow-bg {
@@ -206,7 +207,7 @@ h6 {
     width: auto\9; /* ie8 */
     position: relative;
     /* filter:grayscale(100%); */
-    clip: rect(0px,0px,150px,0px);
+
 }
 
 .main-wrapper {
@@ -214,6 +215,7 @@ h6 {
     margin: 0 auto;
     position: relative;
     padding-bottom: 200px;
+     display: block;
 }
 
 
@@ -222,6 +224,7 @@ h6 {
     margin: 0 auto;
     position: relative;
     padding-bottom: 200px;
+     display: block;
 }
 
 
@@ -229,9 +232,10 @@ h6 {
 .reasons-cover {
     padding-top: 80px;
     padding-bottom: 200px;
+     display: block;
 }
 
-.page-content { margin-top:25px; }
+.page-content { margin-top:25px; display: block; }
 
   </style>
 
@@ -259,39 +263,93 @@ h6 {
                         
   SCN.get_FAQ_html = function() {
     return '<div><h1>FAQs</h1>' + 
-              '<h2>What is a "scene"?</h2>' +   
-              '<p>lorem ipsum sudo facto</p>' + 
-              '<h2>What is a "scene coach"?</h2>' + 
-              '<p>answer answer answer </p>' + 
+              '<h2>What is a scene?</h2>' +   
+              '<p>A scene is any interaction between two or more people that can be rehearsed.  A job interview, a sales pitch, a public speaking event, these are all examples of scenes from real life.  scene.ly provides an online venue to rehearse for them</p>' + 
+              '<h2>What is a scene coach?</h2>' + 
+              '<p>A scene coach is someone with professional experience willing to act as a sounding board or provide feedback to others based on their own experience.  scene.ly\'s mission to connect peers to other peers whos interest and background are inherently useful to each other</p>' + 
               '<h2>Can anyone become a coach?</h2>' + 
-              '<p>lorem ipsum sudo facto</p>' +
+              '<p>scene.ly is currenly vetting coaches for a series of cohorts over the coming months.  Please use the contact form if you would like to be a part of our next cohort</p>' +
               '<h2>Where are scenes held?</h2>' + 
-              '<p>lorem ipsum sudo facto</p>' +
+              '<p>scene.ly autogenerates a virtual room via the appear.in platform once a host creates a scene coach listing. This is where scene actors and coaches meet to practice. </p>' +
               '<h2>What is the process if I want to book a coach?</h2>' + 
-              '<p>lorem ipsum sudo facto</p>' +
+              '<p>Browse the listings of coaches on the site, pick one you like, and click the reserve button to send a payment.  Then you can communicate through scene.ly  direct messages to coordinate a mutually convenient time. Once the session over each of you will have a chance to provide feedback, rate each other, and mark the transaction as complete.</p>' +
               '<h2>How do I schedule time with a coach?</h2>' + 
-              '<p>lorem ipsum sudo facto</p>' +
-              '<h1>Questions about becoming a Coach' + 
+              '<p>Scheduling an agreed upon time is up to the scene coach and actor.  scene.ly recommends coaches use the Calendly platform to make the process of booking time slots for ease of use</p>' +
+              '<h1>Questions about becoming a Scene Coach' + 
               '<h2>How should I set my price?</h2>' + 
-              '<p>lorem ipsum sudo facto</p>' +
+              '<p>Set a price that you think buyers are willing to pay for your skills and level of feedback that also makes it worth your time to host the scene. Prices are ultimately up to the coach.</p>' +
               '<h2>I have a certification, can I list it?</h2>' + 
-              '<p>lorem ipsum sudo facto</p>' +
+              '<p>Yes you can in the description field on your listing.</p>' +
               '<h2>Does scene.ly offer a certification?</h2>' + 
-              '<p>lorem ipsum sudo facto</p>' +
+              '<p>Not yet but we are currently working with executive coaching organizations as platforms to design a certification to allow coaches to become "scene.ly certified."  Sign up for our newsletter if you are interested in staying up to date.</p>' +
               '</div>';
   };
 
                         
   SCN.get_tips_html = function() {
     return '<div><h1>Coaching Tips</h1>' + 
-              '<h2>How can I let buyers schedule time with me automatically?</h2>' +   
-              '<p>lorem ipsum sudo facto</p>' + 
+              '<h2>Use <a href="https://calendly.com/" target="_blank">Calendly</a> to let buyers schedule time time on your calendar automatically</h2>' +   
+              '<p>Calendly is an online calendaring platform that integrates with the major providers including Google Calendar, iCloud, and Office365.  Sign up for an account, link it to your calendar, and set times that you would like to reserve for scene.ly appointments.  Once you have signed up for Calendly you can add your user name to your scene.ly listing</p>' + 
               '<h2>How do I host a video chat after a buyer reserves my time?</h2>' + 
-              '<p>answer answer answer </p>' + 
+              '<p>When you create a scene coach listing on scene.ly, the system generates a link that will be visible on your profile. scene.ly uses the appear.in platform, an online, ondemand video conferencing system. You can read more about how it works <a href="https://appear.in/" target="_blank">here</a>.  Simply load that link at the time of your session to join the person who reserved your time.  It is recommended that when you communicate with someone after a transaction that you confirm that you will meet them there at the time you agree upon.</p>' + 
               '<h2>What steps do I need to take once a buyer finalizes the transaction?</h2>' + 
-              '<p>lorem ipsum sudo facto</p>' +
+              '<p>Reach out, say hello, schedule a time, and get ready to host the scene.  Remember to rate your customers too after the transaction is completed.</p>' +
               '</div>';
   };
+  
+  SCN.get_footer_html = function() {
+    return  '<div class="main-cover footer-cover">' +
+ '  <div class="main-wrapper footer">' +
+ '    <div>' +
+ '      <li class="text-link">' +
+ '        <a href="/features.html">Features</a>' +
+ '      </li>' +
+ '      <li class="text-link">' +
+ '        <a href="/stories.html" >Success stories</a>' +
+ '      </li>' +
+ '      <li class="text-link">' +
+ '        <a href="/pricing.html" >Pricing</a>' +
+ '      </li>' +
+ '      <li>' +
+ '        <a href="https://www.facebook.com/Sharetribe" target="_blank">' +
+ '          <img class="svg facebook" src="/images/icons/facebook.622cc7ba.svg" alt="Sharetribe Facebook" >' +
+ '          </a>' +
+ '        </li>' +
+ '        <li>' +
+ '          <a href="/">' +
+ '            <img class="svg" src="/images/svg/sharetribe.symbol.a54928da.svg" alt="Sharetribe logo" >' +
+ '            </a>' +
+ '          </li>' +
+ '          <li class="twitter-last">' +
+ '            <a href="https://www.twitter.com/Sharetribe" target="_blank">' +
+ '              <img class="svg twitter" src="/images/icons/twitter.493e1d00.svg" alt="Sharetribe Twitter" >' +
+ '              </a>' +
+ '            </li>' +
+ '            <li class="text-link">' +
+ '              <a target="_blank" href="https://www.sharetribe.com/academy/" >Academy</a>' +
+ '            </li>' +
+ '            <li class="text-link">' +
+ '              <a href="/about.html" >About us</a>' +
+ '            </li>' +
+ '            <li class="footer-last text-link">' +
+ '              <a href="/contact.html" >Contact Us</a>' +
+ '            </li>' +
+ '          </div>' +
+ '        </div>' +
+ '        <div class="copyright">' +
+ '          <div class="main-wrapper">' +
+ '            <p class="left">© Sharetribe is crafted with love &amp; coffee in Helsinki.</p> <p class="right">' +
+ '              <a href="/jobs/">Jobs</a> · <a href="/affiliateprogram/">Affiliate program</a> · <a href="/privacypolicy.html">Privacy Policy</a> · <a href="/termsofuse.html">Terms of use</a>' +
+ '            </p>' +
+ '          </div>' +
+ '        </div>' +
+ '      </div>';
+  }
+  
+  SCN.scroll_to_anchor = function(aid){
+    var aTag = $("a[name='"+ aid +"']");
+    $('html,body').animate({scrollTop: aTag.offset().top},'slow');
+  }
   /* -------------------------------- */
 
 
@@ -311,7 +369,7 @@ h6 {
            '  <div class="icon-nonhex-bg">' +
            '    <img class="icon-hexagon-find" src="https://image.freepik.com/free-vector/people-search_23-2147502905.jpg" alt="">' +
            '    </div> <p>' +
-           '      <strong>Browse listings</strong>Find a coach from our network that you want to rehearse with</p>' +
+           '      <strong>Browse listings</strong>Find a scene coach from our network that you want to rehearse with</p>' +
            '  </div>' +
              '<div class="reason">' +
            '  <div class="icon-arrow-bg">' +
@@ -321,9 +379,9 @@ h6 {
            '  </div>' +
           '<div class="reason">' +
            '  <div class="icon-nonhex-bg">' +
-           '    <img class="icon-hexagon-find" src="https://image.freepik.com/free-vector/schedule-background-design_1300-254.jpg" alt="">' +
+           '    <img class="icon-hexagon-find" src="https://image.freepik.com/free-vector/two-business-women-speaking_1133-132.jpg" alt="">' +
            '    </div> <p>' +
-           '      <strong>Schedule a scene</strong>Purchase time and schedule with your scene coach</p>' +
+           '      <strong>Schedule a scene</strong>Coordinate on scene.ly a time for you to meet in a scene.ly online room</p>' +
            '  </div>' +
              '<div class="reason">' +
            '  <div class="icon-arrow-bg">' +
@@ -335,7 +393,7 @@ h6 {
            '  <div class="icon-nonhex-bg">' +
            '    <img class="icon-hexagon-find" src="https://image.freepik.com/free-vector/people-with-speech-bubbles_23-2147504958.jpg" alt="">' +
            '    </div> <p>' +
-           '      <strong>Rehearse online</strong>scene.ly creates a dedicated virtual room for you to rehearse in</p>' +
+           '      <strong>Rehearse online</strong>Meet your coach in one of scene.ly\'s dedicated and secure virtual spaces</p>' +
            '  </div>' +
            '        <div class="clear"/>' +
            '      </div>');
@@ -346,31 +404,32 @@ h6 {
            '<h2 class="centered">“For the things we have to learn before we can do them, we learn by doing them.” <span style="font-style:italic;font-size:.7em;">-Aristotle</span></h2>' + 
            '<div class="reason">' +
            '  <div class="icon-hexagon-bg">' +
-           '   <img class="svg icon-hexagon" src="https://www.sharetribe.com/images/icons/timer.048700d4.svg" alt=""> ' +
+           // '   <img class="svg icon-hexagon" src="https://www.sharetribe.com/images/icons/timer.048700d4.svg" alt=""> ' +
+           '  <div style="height:170px;width:50px;color:white;text-align:center;line-height:170px;width:auto;font-family:Helvetical;font-size:3em">1.</div>' + 
            '    </div> <p>' +
            '      <strong>Develop muscle memory</strong>that only comes with repeated practice</p>' +
            '  </div>' +
             '<div class="reason">' +
            '  <div class="icon-hexagon-bg">' +
-           '   <img class="svg icon-hexagon" src="https://www.sharetribe.com/images/icons/timer.048700d4.svg" aalt=""> ' +
+           '  <div style="height:170px;width:50px;color:white;text-align:center;line-height:170px;width:auto;font-family:Helvetical;font-size:3em">2.</div>' + 
            '    </div> <p>' +
            '      <strong>Take risks</strong>by connecting with someone somewhere not where you are!</p>' +
            '  </div>' +
             '<div class="reason">' +
            '  <div class="icon-hexagon-bg">' +
-           '   <img class="svg icon-hexagon" src="https://www.sharetribe.com/images/icons/timer.048700d4.svg" alt=""> ' +
+           '  <div style="height:170px;width:50px;color:white;text-align:center;line-height:170px;width:auto;font-family:Helvetical;font-size:3em">3.</div>' + 
            '    </div> <p>' +
            '      <strong>Get an honest assessment</strong>Afraid your friends won\'t tell it to you straight?  Our coaches will!</p>' +
            '  </div>' +
             '<div class="reason">' +
            '  <div class="icon-hexagon-bg">' +
-           '   <img class="svg icon-hexagon" src="https://www.sharetribe.com/images/icons/timer.048700d4.svg" alt=""> ' +
+           '  <div style="height:170px;width:50px;color:white;text-align:center;line-height:170px;width:auto;font-family:Helvetical;font-size:3em">4.</div>' + 
            '    </div> <p>' +
            '      <strong>Personalized Feedback</strong>scenes are devoted entirely to you</p>' +
            '  </div>' +
             '<div class="reason">' +
            '  <div class="icon-hexagon-bg">' +
-           '   <img class="svg icon-hexagon" src="https://www.sharetribe.com/images/icons/timer.048700d4.svg" alt=""> ' +
+           '  <div style="height:170px;width:50px;color:white;text-align:center;line-height:170px;width:auto;font-family:Helvetical;font-size:3em">5.</div>' + 
            '    </div> <p>' +
            '      <strong>Develop ongoing relationships</strong>to gain trusted advisors and mentorship</p>' +
            '  </div>' +
@@ -396,7 +455,7 @@ h6 {
       appear_link = appear_link ? appear_link.split('/')[3] : "";
       appear_link = appear_link ? appear_link.split('-')[0] : "";
       $('.listing-details-container > div.row').eq('-1').before('<div class="row">' + 
-          '<div class="col-12"><b>Video link (<span style="color:red">Ensure to copy this link to your Calendly account!</span>)</b>: <a href="http://appear.in/' + appear_link + '" target="_blank" style="font-size:24px">http://appear.in/' + appear_link + '</a>' + 
+          '<div class="col-12"><b>Video link (<span style="color:red">This is your dedicated scene.ly virtual space link to use for your scenes</span>)</b>: <a href="http://appear.in/' + appear_link + '" target="_blank" style="font-size:24px">http://appear.in/' + appear_link + '</a>' + 
           '</div></div>');    
     }   
      $('a.home-toolbar-button-group-button[title="List"]').hide();
@@ -431,7 +490,7 @@ h6 {
             '</div>');
             
       $('.no-cover-photo.page-content').show();
-      $('.page-content').find('.wrapper').prepend('<h6 class="reasons" style="max-width:1100px">Get started</h6>' +
+      $('.page-content').find('.row').first().prepend('<h6 class="reasons" style="max-width:1100px">Get started</h6>' +
            '<h2 class="centered">Start browsing listings below to find a coach today!<span style="font-style:italic;font-size:.7em;"></span></h2>');
     }
         
@@ -493,7 +552,7 @@ h6 {
     
     // ---- new listing form ---
     $('div#new_listing_form').prepend('<div id="host-disclaimer"><h2 style="text-align:center">Terms and Conditions</h2>' + 
-      '<p>By completing this Scene Coach listing you agree to honor scene.ly\'s <a href="https://practiceperfect.sharetribe.com/en/infos/how_to_use" target="_blank">Scene Coach Rules and Responsibilities</p></div>');
+      '<p>By completing this Scene Coach listing you agree to honor scene.ly\'s <a href="https://practiceperfect.sharetribe.com/en/infos/how_to_use#rules" target="_blank">Scene Coach Rules and Responsibilities</p></div>');
       
      $('label.input[for="listing_description"]').text('Tell people why you are doing this and what makes you qualified.');
      
@@ -584,11 +643,11 @@ h6 {
     
     $('#about_page_content').html('<div class="info-bullet-header"><img src="http://www.myiconfinder.com/uploads/iconsets/acc8b94ae5e7383b0e7898928121321c-microphone.png" />' +
     '<h2>All the world\'s a stage, let\'s practice together!</h2></div>' +   
-    '<div class="info-bullet-content"><p>Practice not only makes perfect, it instills confidence and increases effectiveness.  But often in the professional world we take performance opportunities for granted.  That job interview for the next level, A presentation to senior leaders, a pitch to potential investors, or participation in a panel discussion.  Much like the arts these are moments when the spotlight is on you and an opportunity to dramatically increase your personal brand effectiveness.  Practing with family and friends can only go so far.  Through scene.ly\'s network of professionals with a broad range of experience, you can develop the muscle memory, capture feedback, and gain insights only interaction with other people can provide.</p>' + 
+    '<div class="info-bullet-content"><p>Practice not only makes perfect, it instills confidence and increases effectiveness.  But often in the professional world we take performance opportunities for granted.  That job interview for the next level, A presentation to senior leaders, a pitch to potential investors, or participation in a panel discussion.  Much like the arts these are moments when the spotlight is on you and an opportunity to build your personal brand.  Practing with family and friends can only go so far.  Through scene.ly\'s network of professionals with a broad range of experience, you can develop the muscle memory, capture feedback, and gain insights only interaction with other people can provide.</p>' + 
     '<div class="info-bullet-header"><img src="https://d1cq11ki2hqhd3.cloudfront.net/wp-content/uploads/2015/06/Icon-Affiliate-WoB-220px.png" />' +
     '<h2>Realizing untapped talent</h2></div>' + 
     '<div class="info-bullet-content"><p>By virtue of going to participating in the workforce, cooperating and collaborating with others, and having an impact on how organizations produce goods and services, you are in a unique position to help others who would benefit from your perspective.  Even just listening and understanding someone is a valuable service to many.  Executive coaches have long provided this type of training and coaching services for clients, but typically they are priced for and targeted to high-paid executives.  The power of the broader working community is in a better position to support and coach others in a way that democratizes that professional education for early and mid-level professionals.  scene.ly aimes to tap the knowledge that exists in our professional working world and bring those benefits to the community so that both suppliers and consumers can benefit</p></div>' + 
-     '<div class="info-bullet-header"><img src="http://www.creativeone.com/wp-content/uploads/2014/11/iconPartner.png" />' +
+     '<div class="info-bullet-header"><a name="communities"><img src="http://www.creativeone.com/wp-content/uploads/2014/11/iconPartner.png" /></a>' +
     '<h2>Developing leaders in underserved communities</h2></div>' + 
     '<div class="info-bullet-content"><p>scene.ly believes that leaders are developed not born, and that encouragement, support, and feedback are critical to developing leadership abilities.  Many of the world\'s brightest minds do not receive this type of nurturing due to lack of access.  we are actively developing partnerships with organizations that work with those who may benefit from increased access to these types of resources.  Scene coaches are able to voluntarily offer their services at a discounted fee or pro-bono as part of this effort to reach underserved populations.</p></div>');
     
@@ -604,10 +663,10 @@ h6 {
     '<p>As scene.ly is relatively new to the online "scene," there are several steps you will need to take to wire up the required 3rd party platforms so that scene.ly can allow buyers to schedule your time automatically, pay you, and provide a dedicated online venue for your space..   Please review the "Scene Coach Rules and Responsibilities" and when you are ready follow the steps below to create a listing.</p>' +
     '<div  class="how-to-list"><ol class="how-to-list">' +   
     '<li><span class="number">1.</span><p><span class="leader">Create a listing</span>Click the "Start Coaching" button at the bottom of this page. This will enable you to create a listing on scene.ly\'s home page.  There you will fill out information about your background, experience, expertise, and pricing so that potential buyers can find you.</p></li>' +  
-    '<li><span class="number">2.</span><p><span class="leader">Set up your PayPal account to accept payments</span>Once your listing is saved, scene.ly will ask you to link to your PayPal account to accept payments.  Buyers will not be able to complete transactions until this is completeld.  When you do this you will need to enable PayPal business service to accept payments.  Business services can be enabled within PayPay at no additional cost, but this step is required to allow buyers to pay you through the platform.  <a href="https://www.paypal.com/us/webapps/mpp/product-selection" target="_blank">Learn more about PayPal business service for accepting payments</a></p></li>' +
+    '<li><span class="number">2.</span><p><span class="leader">Set up your PayPal account to accept payments</span>Once your listing is saved, scene.ly will ask you to link to your PayPal account to accept payments.  Buyers will not be able to complete transactions until you take this step.  Follow the link from scene.ly to enable PayPal business service on your account to become a seller of services.  Business services can be enabled within PayPay at no additional cost, but this step is required to allow buyers to pay you through the platform.  <a href="https://www.paypal.com/us/webapps/mpp/product-selection" target="_blank">Learn more about PayPal business service for accepting payments</a></p></li>' +
     '<li><span class="number">3.</span><p><span class="leader">Review the "Coaching Tips"</span>There are optional steps you can take to make the coaching experience easier for buyers.  Setting up a Calendly account will let buyers automatically schedule time on your calendar based on windows of time you specify for scene.ly appointments.  Understanding how scene.ly\'s virtual venues work.  Information about this and more is available in the <a href="/infos/about?tips=1">coaching tips section.</a></p></li>' +
     '</ol></div>' +
-    '<div class="info-bullet-header"><img src="https://s3.amazonaws.com/optimisemedia/wp-content/uploads/2015/04/Icon-Regulation-WoP-220px.png" /><h2>Scene Coach Rules and Responsibilities</h2></div>' +
+    '<div class="info-bullet-header"><a name="#rules"><img src="https://s3.amazonaws.com/optimisemedia/wp-content/uploads/2015/04/Icon-Regulation-WoP-220px.png" /></a><h2>Scene Coach Rules and Responsibilities</h2></div>' +
     '<div class="info-bullet-content"><p>Critical to your success to as a scene coach is your ability to make others feel comfortable, safe, and willing to be vulnerable.  Respect and active listening are the bedrock of these short engagements and we ask you to embrace those.  We suggest you ask what brought the person who requested your availability why they did so, and to share an experience briefly from your past when you experienced a similar challenge and similar feelings.  The goal of scene.ly is to give people a chance to ask the questions they think might be considered "dumb" or "stupid" (they are not) and to take risks they might not otherwise take.  Please keep this ethic in mind as a scene.ly coach.  When a buyer reserves time with you, you are responsible for scheduling a time and being present for the appointment.  You are obligated to communicate any changes to the agreed upon appointment at least 24 hours in advance.</p></div>' + 
     '<div class="info-bullet-header"><img src="http://tomdrummond.com/wp-content/uploads/2016/01/go-icon.png" /><h2 style="padding-bottom:60px;">Ready? Click the link below to start coaching!</h2></div>' + 
     '<div class="info-bullet-header"><div id="sign_up"></div></div>');
@@ -654,6 +713,19 @@ h6 {
       }
     
     // ------------------
+    
+    // ---------- hacked anchor tag reference
+    var hsh = window.location.hash;
+    
+    if (hsh) {
+       SCN.scroll_to_anchor(hsh);
+    }
+    // ------------------
+    
+    // --- footer ---
+    
+    $('.page-content').after(SCN.get_footer_html());
+    // --------------
     
   });
   </script>
