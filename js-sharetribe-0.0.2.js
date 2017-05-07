@@ -22,6 +22,7 @@
       line-height: 0.9375em;
   }
 
+
   div#host-disclaimer { color:#000; border: 3px solid #CCC;  padding: 8px; background-color:fff; padding-left:15px; width:100%;}
 
   div#host-disclaimer > h2 {
@@ -227,8 +228,6 @@ h6 {
      display: block;
 }
 
-
-
 .reasons-cover {
     padding-top: 80px;
     padding-bottom: 200px;
@@ -236,6 +235,10 @@ h6 {
 }
 
 .page-content { margin-top:25px; display: block; }
+
+div[class^='SearchBar'] {
+    display:none;  
+}
 
   </style>
 
@@ -290,14 +293,22 @@ h6 {
     return '<div><h1>Coaching Tips</h1>' + 
               '<h2>Use <a href="https://calendly.com/" target="_blank">Calendly</a> to let buyers schedule time time on your calendar automatically</h2>' +   
               '<p>Calendly is an online calendaring platform that integrates with the major providers including Google Calendar, iCloud, and Office365.  Sign up for an account, link it to your calendar, and set times that you would like to reserve for scene.ly appointments.  Once you have signed up for Calendly you can add your user name to your scene.ly listing</p>' + 
-              '<h2>How do I host a video chat after a buyer reserves my time?</h2>' + 
+              '<h2>Get familiar with scene.ly\'s online video platfor <a href="https://appear.in" target="_blank">appear.in</a></h2>' + 
               '<p>When you create a scene coach listing on scene.ly, the system generates a link that will be visible on your profile. scene.ly uses the appear.in platform, an online, ondemand video conferencing system. You can read more about how it works <a href="https://appear.in/" target="_blank">here</a>.  Simply load that link at the time of your session to join the person who reserved your time.  It is recommended that when you communicate with someone after a transaction that you confirm that you will meet them there at the time you agree upon.</p>' + 
-              '<h2>What steps do I need to take once a buyer finalizes the transaction?</h2>' + 
-              '<p>Reach out, say hello, schedule a time, and get ready to host the scene.  Remember to rate your customers too after the transaction is completed.</p>' +
+              '<h2>Offer "door-to-door" service to increase chances of return customers and great reviews</h2>' + 
+              '<p>When a buyer reserves your time, reach out, say hello, schedule a time, and get ready to host the scene.  Remember to rate your customers too after the transaction is completed.</p>' +
               '</div>';
   };
   
+    SCN.get_enterprise_html = function() {
+    return '<div><h1>Enterprise Solutions</h1>' + 
+              '<h2>Coming Soon</h2>' +   
+              '<p>Please contact <a href="mailto:scenelyllc@gmail.com">scenely admin</a> to inquire about enterprise solutions</p>' +
+              '</div>';
+    };
+  
   SCN.get_footer_html = function() {
+    return '<div></div>';
     return  '<div class="main-cover footer-cover">' +
  '  <div class="main-wrapper footer">' +
  '    <div>' +
@@ -355,6 +366,8 @@ h6 {
 
   jQuery(function() { 
 
+    // top nav customizations
+    //$('input[type="search"]').closest('div').hide();
    
     // --- Home Page Customizations ---
     
@@ -587,10 +600,11 @@ h6 {
     
     // --- Top Links
      $('a[data-pid="About 0"]').closest('div').css('width', function() {    
-      return parseInt($(this).css('width')) + 200;
+      return parseInt($(this).css('width')) + 300;
      });
      $('a[data-pid="About 0"]').text("About scene.ly");
      $('a[data-pid="Contact us 1"]').text("Become a coach").attr('href', '/en/infos/how_to_use');
+     $('a[data-pid="Contact us 1"]').after('<a class="MenuPriority__priorityLink__moBbL enterprise" href="/infos/about?enterprise=1">Enterprise</a>');
      $('a[data-pid="Invite new members 2"]').text("Contact").attr('href', '/en/user_feedbacks/new');
      $('a[data-pid="Invite new members 2"]').after('<a class="MenuPriority__priorityLink__moBbL FAQ" href="/infos/about?FAQ=1">FAQ</a>');
     // ---------
@@ -598,7 +612,11 @@ h6 {
     // --- Sidebar Links on "About" and "How it works"
      $('div.left-navi > a[title="About"]').find('div.left-navi-link-text').text('About scene.ly');
      $('div.left-navi > a[title="How it works"]').find('div.left-navi-link-text').text('Become a coach');   
-     $('div.left-navi > a[title="How it works"]').after('<a class="left-navi-link FAQ" href="/infos/about?FAQ=1" title="FAQ">' + 
+     $('div.left-navi > a[title="How it works"]').after('<a class="left-navi-link" href="/infos/about?enterprise=1" title="Enterprise">' + 
+      '<div class="left-navi-link-icon ss-lock"></div>' + 
+      '<div class="left-navi-link-text">Enterprise</div>' + 
+      '</a>');
+     $('div.left-navi > a[title="Enterprise"]').after('<a class="left-navi-link FAQ" href="/infos/about?FAQ=1" title="FAQ">' + 
       '<div class="left-navi-link-icon ss-help"></div>' + 
       '<div class="left-navi-link-text">FAQ</div>' + 
       '</a>');
@@ -608,20 +626,19 @@ h6 {
       '</a>');
         
     // ----------------
-    
-    // --- collapsed top nav - falls to the side when you shrink the browser (might be mobile too) ---  
-     $('.MenuItem_link[href="/en/infos/about"]').text('About scene.ly');  
-     $('.MenuItem_link[href="/en/user_feedbacks/new"]').text("Become a coach").attr('href', '/en/infos/how_to_use'); 
-     $('.MenuItem_link[href="/en/invitations/new"]').text('Contact').attr('href', '/en/user_feedbacks/new');
-    
-    // --------------------------------------
+
         
     // --- Sidebar Links on info page (when they collapse due to width compression/mobile (they turn to a dropdown)
     
-     $('.left-navi-menu.toggle-menu').find('a[href="/en/infos/about"]').text('About scene.ly');  
-     $('.left-navi-menu.toggle-menu').find('a[href="/en/infos/how_to_use"]').text('Become a coach');
-     $('.left-navi-menu.toggle-menu').find('a[href="/en/infos/how_to_use"]')
-      .after('<a href="/infos/about?FAQ=1" class="FAQ" title="FAQ">FAQ</a>');
+     $('.left-navi-menu.toggle-menu').find('a[href="/en/infos/about"]').find('.text-with-icon').text('About scene.ly');  
+     $('.left-navi-menu.toggle-menu').find('a[href="/en/infos/how_to_use"]').find('.text-with-icon').text('Become a coach');
+     $('.left-navi-menu.toggle-menu').find('a[href="/en/infos/how_to_use"]').after('<a href="/infos/about?enterprise=1" class="enterprise" title="enterprise">' + 
+        '<div class="icon-with-text ss-lock"></div>' + 
+        '<div class="text-with-icon">Enterprise</div></a>');
+     $('.left-navi-menu.toggle-menu').find('a[href="/infos/about?enterprise=1"]')
+      .after('<a href="/infos/about?FAQ=1" class="FAQ" title="FAQ">' + 
+        '<div class="icon-with-text ss-help"></div>' + 
+        '<div class="text-with-icon">FAQ</div></a>');
     
     // --------------------------
      
@@ -632,9 +649,11 @@ h6 {
     
     // ----- mobile links
     $('.OffScreenMenu_scrollpane').find('a[href="/infos/about"]').text('About scene.ly');
-    $('.OffScreenMenu_scrollpane').find('a[href="/user_feedbacks/new"]').text("Become a coach").attr('href', '/en/infos/how_to_use');
-    $('.OffScreenMenu_scrollpane').find('a[href="/invitations/new"]').text("Contact").attr('href', '/en/user_feedbacks/new')
+    $('.OffScreenMenu_scrollpane').find('a[href="/user_feedbacks/new"]').text("Become a coach").attr('href', '/en/infos/how_to_use')
+      .closest('div').after('<div class=" enterprise MenuItem MenuItem__menuitem__3_-l_  MenuMobile__menuSectionMenuItem__2yMLC"><a class="MenuItem_link MenuItem__menuitemLink__2Eedg MenuMobile__menuSectionMenuItemLink__GfyW6" href="/infos/about?enterprise=1" style="color:#4a90e2;" data-reactid="27">Enterprise</a></div>');
+    $('.OffScreenMenu_scrollpane').find('a[href="/en/invitations/new"]').text("Contact").attr('href', '/en/user_feedbacks/new')
       .closest('div').after('<div class=" FAQ MenuItem MenuItem__menuitem__3_-l_  MenuMobile__menuSectionMenuItem__2yMLC"><a class="MenuItem_link MenuItem__menuitemLink__2Eedg MenuMobile__menuSectionMenuItemLink__GfyW6" href="/infos/about?FAQ=1" style="color:#4a90e2;" data-reactid="27">FAQ</a></div>');
+      
     
     // -----------------
     
@@ -664,8 +683,8 @@ h6 {
     '<div  class="how-to-list"><ol class="how-to-list">' +   
     '<li><span class="number">1.</span><p><span class="leader">Create a listing</span>Click the "Start Coaching" button at the bottom of this page. This will enable you to create a listing on scene.ly\'s home page.  There you will fill out information about your background, experience, expertise, and pricing so that potential buyers can find you.</p></li>' +  
     '<li><span class="number">2.</span><p><span class="leader">Set up your PayPal account to accept payments</span>Once your listing is saved, scene.ly will ask you to link to your PayPal account to accept payments.  Buyers will not be able to complete transactions until you take this step.  Follow the link from scene.ly to enable PayPal business service on your account to become a seller of services.  Business services can be enabled within PayPay at no additional cost, but this step is required to allow buyers to pay you through the platform.  <a href="https://www.paypal.com/us/webapps/mpp/product-selection" target="_blank">Learn more about PayPal business service for accepting payments</a></p></li>' +
-    '<li><span class="number">3.</span><p><span class="leader">Review the "Coaching Tips"</span>There are optional steps you can take to make the coaching experience easier for buyers.  Setting up a Calendly account will let buyers automatically schedule time on your calendar based on windows of time you specify for scene.ly appointments.  Understanding how scene.ly\'s virtual venues work.  Information about this and more is available in the <a href="/infos/about?tips=1">coaching tips section.</a></p></li>' +
-    '</ol></div>' +
+    '<li><span class="number">3.</span><p><span class="leader">Review the "Coaching Tips"</span>There are optional steps you can take to make the coaching experience easier for buyers.  Setting up a Calendly account will let buyers automatically schedule time on your calendar based on windows of time you specify for scene.ly appointments.  Understanding how scene.ly\'s virtual venues work.  Information about this and more is available in the <a href="/infos/about?tips=1" target="_blank">coaching tips section.</a></p></li>' +
+    '</ol></div>' + 
     '<div class="info-bullet-header"><a name="#rules"><img src="https://s3.amazonaws.com/optimisemedia/wp-content/uploads/2015/04/Icon-Regulation-WoP-220px.png" /></a><h2>Scene Coach Rules and Responsibilities</h2></div>' +
     '<div class="info-bullet-content"><p>Critical to your success to as a scene coach is your ability to make others feel comfortable, safe, and willing to be vulnerable.  Respect and active listening are the bedrock of these short engagements and we ask you to embrace those.  We suggest you ask what brought the person who requested your availability why they did so, and to share an experience briefly from your past when you experienced a similar challenge and similar feelings.  The goal of scene.ly is to give people a chance to ask the questions they think might be considered "dumb" or "stupid" (they are not) and to take risks they might not otherwise take.  Please keep this ethic in mind as a scene.ly coach.  When a buyer reserves time with you, you are responsible for scheduling a time and being present for the appointment.  You are obligated to communicate any changes to the agreed upon appointment at least 24 hours in advance.</p></div>' + 
     '<div class="info-bullet-header"><img src="http://tomdrummond.com/wp-content/uploads/2016/01/go-icon.png" /><h2 style="padding-bottom:60px;">Ready? Click the link below to start coaching!</h2></div>' + 
@@ -710,6 +729,22 @@ h6 {
             
           $('a.left-navi-link').removeClass('selected');
           $('a.tips').addClass('selected');    
+      }
+    
+    // ------------------
+    
+    // --- Enterprise
+      var show_tips = SCN.get_qs_param('enterprise');
+      
+      if ( show_tips ) {  
+        $('div')
+          .filter(function() {
+              return this.id.match(/.*_page_content/);
+          })
+          .html( SCN.get_enterprise_html() );
+            
+          $('a.left-navi-link').removeClass('selected');
+          $('a.enterprise').addClass('selected');    
       }
     
     // ------------------
