@@ -1,7 +1,7 @@
   <style>
-  .marketplace-lander .coverimage-fade  { background:rgba(62, 40, 173, 0.4) !important; }
+  .marketplace-lander .coverimage-fade  { background:rgba(62, 40, 173, 0.3) !important; }
   
-  .no-cover-photo.page-content {display: none; }
+  /* .no-cover-photo.page-content {display: block; } */
 
   .marketplace-lander .marketplace-title-header h1 { color: #fff !important;} 
   
@@ -44,7 +44,7 @@
 
   div.quantity-description { display: none; }
 
-  .price-container > label:after { content: " per 30 minutes"; }
+  .price-container > label:after { content: " per 15 minutes"; }
 
   label[for="listing_title"]:after { content: " (please put your first name and role you think best describes you)"; }
 
@@ -287,7 +287,7 @@ h6 {
     max-width: 100%;
     margin: 0 auto;
     position: relative;
-    padding:40px 80px 40px 80px;
+    padding:40px 80px 0px 80px;
     display: block;
 }
 
@@ -366,10 +366,14 @@ footer a, footer a:hover, footer a:active, footer a:visited { color: white; }
     return SCN.get_qs_param('dev');
   }
   
+  SCN.post_dev_banner = function() {
+    $('#topbar-container').prepend('<div style="font-size:.6em;width:100%;color:white;height:30px;background-color:red;padding:5px 0px 5px 30px;">dev mode</div>');
+  }
+  
   SCN.root = ( location.pathname == "/" );
   
   SCN.authenticated = function() {
-    return !$('a[href="/en/signup"]').is(':visible');
+    return !$('a[href="/en/signup"]').length > 0;
   }
   
   SCN.show_profiles = (function() {
@@ -421,7 +425,7 @@ footer a, footer a:hover, footer a:active, footer a:visited { color: white; }
   SCN.get_enterprise_html = function() {
     return '<div><h1>Business Solutions</h1>' + 
               '<h2>Coming Soon</h2>' +   
-              '<p>Please contact <a href="mailto:rich@scene.ly">scene.ly</a> to inquire about business solutions and services pertaining to executive and professional coaching</p>' +
+              '<p>Please contact <a href="mailto:info@scene.ly">scene.ly</a> to inquire about business solutions and services pertaining to executive and professional coaching</p>' +
               '</div>';
     };
   
@@ -430,13 +434,13 @@ footer a, footer a:hover, footer a:active, footer a:visited { color: white; }
  '  <div class="main-footer-wrapper footer">' +
  '    <div>' +
  '      <li class="text-link">' +
- '        <a href="#">About scene.ly</a>' +
+ '        <a href="/infos/about">About scene.ly</a>' +
  '      </li>' +
  '      <li class="text-link">' +
- '        <a href="#" >Become a coach</a>' +
+ '        <a href="/en/infos/how_to_use" >Become a coach</a>' +
  '      </li>' +
  '      <li class="text-link">' +
- '        <a href="#" >Partnerships</a>' +
+ '        <a href="#">Partnerships</a>' +
  '      </li>' +
  '      <li>' +
  '        <a href="#" target="_blank">' +
@@ -454,20 +458,17 @@ footer a, footer a:hover, footer a:active, footer a:visited { color: white; }
  '              </a>' +
  '            </li>' +
  '            <li class="text-link">' +
- '              <a target="_blank" href="#" >[link]</a>' +
- '            </li>' +
- '            <li class="text-link">' +
- '              <a href="#" >link</a>' +
+ '              <a href="/infos/about?enterprise=1" >Business</a>' +
  '            </li>' +
  '            <li class="footer-last text-link">' +
- '              <a href="/contact.html" >Contact Us</a>' +
+ '              <a href="/en/user_feedbacks/new" >Contact</a>' +
  '            </li>' +
  '          </div>' +
  '        </div>' +
  '        <div class="copyright">' +
  '          <div class="main-copyright-wrapper">' +
  '            <p class="left" style="color:white">© scene.ly LLC</p> <p class="right">' +
- '              <a href="#">[Jobs]</a> · <a href="#">[OTHER]</a> · <a href="/privacypolicy.html">[Privacy Policy]</a> · <a href="#">[Terms of use]</a>' +
+ //'              <a href="#">[Jobs]</a> · <a href="#">[OTHER]</a> · <a href="/privacypolicy.html">[Privacy Policy]</a> · <a href="#">[Terms of use]</a>' +
  '            </p>' +
  '          </div>' +
  '        </div>' +
@@ -484,6 +485,24 @@ footer a, footer a:hover, footer a:active, footer a:visited { color: white; }
            '<div class="club-bullet-header"><img class="club-bullet" src="http://icons.iconarchive.com/icons/custom-icon-design/pretty-office-7/128/Game-spades-icon.png" /><h2>It is difficult to find someone to practice with!</h2></<div>' +
            '<div style="padding-top:50px;"><h3>scene.ly creates a marketplace for junior- and mid-level professionals to practice together, share ideas and feedback, and gain confidence through experience!</h3><p style="padding-top:20px">  Find professionals to informally practice with or use one of scene.ly\s certified coaches for a formal approach to professional practice today!</h3></p>';
   }
+  
+  SCN.get_why_use_html_DEV = function() {
+    return '<div id="why_use" class="main-use-cover use-cover">' +
+          '<div class="main-use-wrapper use-wrapper">' +
+           '<h6 class="reasons">What is a scene?</h6>' +
+            '<h2 class="centered">Every interaction we have in life is a scene</h2>' + 
+            '<p>A job interview. A pitch. A public speaking event.  These are times when the spotlight is on us.  But often we don\'t practice for them, or we talk to a wall or mirror to run through our lines.  There is no substitute for human to human interaction, especially those with experience in a given area.</p>' + 
+           '<p>On scene.ly you can find scene partners to rehearse with.  Ask a Venture Capitalist what questions they would ask during a pitch.  Ask a product manager to run you through the gauntlet of an interview.  Practice your next keynote speech with an executive coach.</p></div>';
+  }
+  
+  SCN.get_what_is_html_DEV = function() {
+    return '<div id="what_is" class="main-what-cover what-cover">' +
+          '<div class="main-what-wrapper what-wrapper">' +
+           '<h6 class="reasons">what are scenes?</h6>' +
+            '<h2 class="centered">A scene is any interaction between two or more people that can be rehearsed</h2>' + 
+           '<p>A scene is ...</p>';
+  }
+  
   SCN.get_how_it_works_html = function() {
     return '<div id="how_it_works" class="main-how-cover how-cover">' +
           '<div class="main-how-wrapper how-wrapper">' +
@@ -572,13 +591,13 @@ footer a, footer a:hover, footer a:active, footer a:visited { color: white; }
   SCN.get_styled_scene_types = function() {
      return '<div id="scene-marketplace" class="main-scene-cover scene-cover">' +
           '<div class="main-scene-wrapper scene-wrapper">' +
-           '<a name="scene-types"><h6 class="reasons">Scene Marketplace</h6></a>' +
-           '<h2 class="centered">What do you want to practice today?</h2>' + 
+           '<a name="scene-types"><h6 class="reasons">Make a scene</h6></a>' +
+           // '<h2 class="centered">What do you want to practice today?</h2>' + 
            '<a href="/?category=mock-interview"><div class="reason">' +
            '  <div class="icon-nonhex-bg">' +
            '    <img class="icon-hexagon-find" src="https://www.gradcrew.com/img/blog/4.jpg" alt="">' +
            '    </div> <p>' +
-           '      <strong>Mock Interviews</strong></p>' +
+           '      <strong>Interviews, Pitches, or Presentations</strong></p>' +
            '  </div></a>' +
              '<div class="reason">' +
            '  <div class="icon-arrow-bg">' +
@@ -614,7 +633,8 @@ footer a, footer a:hover, footer a:active, footer a:visited { color: white; }
   
   SCN.customize_home = function() {
         
-    if ( SCN.root && !SCN.authenticated() && !SCN.show_profiles ) {
+    if ( false) { //SCN.root && !SCN.authenticated() && !SCN.show_profiles ) {
+     
 
         $('article.page-content').find('.wrapper').prepend(SCN.get_why_use_html());
         $('#why_use').after( SCN.get_how_it_works_html() );        
@@ -623,109 +643,51 @@ footer a, footer a:hover, footer a:active, footer a:visited { color: white; }
     
     if ( SCN.root ) {
       
-      if ( ! SCN.show_profiles ) {
-        $('section.marketplace-lander').html('').append('<div class="coverimage">' +
-              '<figure class="marketplace-cover fluidratio">' +
-              '<div class="lander-content marketplace-lander-content">' +
-              '<h1 class="marketplace-lander-content-title">Practice for Professionals</h1>' +
-              '<p id="call-to-action" class="marketplace-lander-content-description">Hire peers, colleagues, and mentors to practice for your next interview, pitch, or presentation</p>' + 
-              '</div>' +
-              '</figure>' +
-              '</div>');
-              
-        // hide listings and swap in the styled scenes html
-        $('.home-toolbar').before( SCN.get_styled_scene_types() );
-        $('.home-toolbar').hide().next().hide();
+      if ( false ) { // ! SCN.show_profiles ) {
+       // $('section.marketplace-lander').html('').append('<div class="coverimage">' +
+       //       '<figure class="marketplace-cover fluidratio">' +
+       //       '<div class="lander-content marketplace-lander-content">' +
+       //       '<h1 class="marketplace-lander-content-title">Practice for Professionals</h1>' +
+       //       '<p id="call-to-action" class="marketplace-lander-content-description">Hire peers, colleagues, and mentors to practice for your next interview, pitch, or presentation</p>' + 
+       //       '</div>' +
+       //       '</figure>' +
+       //       '</div>');
+       //       
+       // // hide listings and swap in the styled scenes html
+       // $('.home-toolbar').before( SCN.get_styled_scene_types() );
+       // $('.home-toolbar').hide().next().hide();
       }
       else {
-        $('section.marketplace-lander').html('').append('<div class="coverimage">' + 
-            '<figure class="marketplace-cover-small fluidratio"></figure>' + 
-            '            <div class="coverimage-fade">' + 
-            '            <figure class="marketplace-cover-small-fade fluidratio"></figure>' + 
-            '            </div>' + 
-            '            </div>' + 
-            '            <div class="title-container">' + 
-            '            <div class="title-header-wrapper">' + 
-            '            <div class="marketplace-title-header">' + 
-            '            <h1>Find a coach</h1>' + 
-            '            </div>' + 
-            '            </div>' + 
-            '            </div>');
+       //$('section.marketplace-lander').html('').append('<div class="coverimage">' + 
+       //    '<figure class="marketplace-cover-small fluidratio"></figure>' + 
+       //    '            <div class="coverimage-fade">' + 
+       //    '            <figure class="marketplace-cover-small-fade fluidratio"></figure>' + 
+       //    '            </div>' + 
+       //    '            </div>' + 
+       //    '            <div class="title-container">' + 
+       //    '            <div class="title-header-wrapper">' + 
+       //    '            <div class="marketplace-title-header">' + 
+       //    '            <h1>Find a coach</h1>' + 
+       //    '            </div>' + 
+       //    '            </div>' + 
+       //    '            </div>');
 
       }
         
     if ( ! SCN.authenticated() ) {
       $('p#call-to-action').append('<div id="find-coach" style="padding-top:15px;"><a id="find-coach" class="MenuMobile__offScreenHeaderNewListingButton__3ssaA AddNewListingButton AddNewListingButton__button__2H8yh" href="#" title="Make a scene" data-reactid="12" style="width: 200px;"><span class="AddNewListingButton__backgroundContainer__4Nn3Z AddNewListingButton_background" style="background-color: rgb(0, 204, 122); display: inline;" data-reactid="13"></span><span class="AddNewListingButton__mobile__2JhHF AddNewListingButton_mobile" style="color: rgb(255, 255, 255); padding: 0px 10px;font-size:.8em;font-weight:200;" data-reactid="14">Make a scene</span><span class="AddNewListingButton__desktop__17Luf AddNewListingButton_desktop" data-reactid="15">Make a scene</span></a></div>');
       
-      $('#find-coach').on('click', function() {
-        SCN.scroll_to_anchor('scene-types');
-      });
+     //$('#find-coach').on('click', function() {
+     //  SCN.scroll_to_anchor('scene-types');
+     //});
     }
 
-    $('.no-cover-photo.page-content').show();
+    // $('.no-cover-photo.page-content').show();
     // $('.page-content').find('.row').first().prepend('<a name="get-started"><h6 class="reasons" style="max-width:1100px">Get started</h6></a>' +
      //    '<h2 class="centered">Start browsing listings below to find a coach today!<span style="font-style:italic;font-size:.7em;"></span></h2>');
     }
   }
-  
-  SCN.customize_home_DEV = function() {
-    
-    $('#topbar-container').prepend('<div style="font-size:.6em;width:100%;color:white;height:30px;background-color:red;padding:5px 0px 5px 30px;">dev mode</div>');
-    
-    if ( SCN.root && !SCN.authenticated() && !SCN.show_profiles ) {
 
-        $('article.page-content').find('.wrapper').prepend(SCN.get_why_use_html());
-        $('#why_use').after( SCN.get_how_it_works_html() );        
-         $('#how_it_works').after( SCN.get_five_reasons_html() );
-    }          
-    
-    if ( SCN.root ) {
-      
-      if ( ! SCN.show_profiles ) {
-        $('section.marketplace-lander').html('').append('<div class="coverimage">' +
-              '<figure class="marketplace-cover fluidratio">' +
-              '<div class="lander-content marketplace-lander-content">' +
-              '<h1 class="marketplace-lander-content-title">Practice for Professionals</h1>' +
-              '<p id="call-to-action" class="marketplace-lander-content-description">Hire peers, colleagues, and mentors to practice for your next interview, pitch, or presentation</p>' + 
-              '</div>' +
-              '</figure>' +
-              '</div>');
-              
-        // hide listings and swap in the styled scenes html
-        $('.home-toolbar').before( SCN.get_styled_scene_types() );
-        $('.home-toolbar').hide().next().hide();
-      }
-      else {
-        $('section.marketplace-lander').html('').append('<div class="coverimage">' + 
-            '<figure class="marketplace-cover-small fluidratio"></figure>' + 
-            '            <div class="coverimage-fade">' + 
-            '            <figure class="marketplace-cover-small-fade fluidratio"></figure>' + 
-            '            </div>' + 
-            '            </div>' + 
-            '            <div class="title-container">' + 
-            '            <div class="title-header-wrapper">' + 
-            '            <div class="marketplace-title-header">' + 
-            '            <h1>Find a coach</h1>' + 
-            '            </div>' + 
-            '            </div>' + 
-            '            </div>');
-
-      }
-        
-    if ( ! SCN.authenticated() ) {
-      $('p#call-to-action').append('<div id="find-coach" style="padding-top:15px;"><a id="find-coach" class="MenuMobile__offScreenHeaderNewListingButton__3ssaA AddNewListingButton AddNewListingButton__button__2H8yh" href="#" title="Make a scene" data-reactid="12" style="width: 200px;"><span class="AddNewListingButton__backgroundContainer__4Nn3Z AddNewListingButton_background" style="background-color: rgb(0, 204, 122); display: inline;" data-reactid="13"></span><span class="AddNewListingButton__mobile__2JhHF AddNewListingButton_mobile" style="color: rgb(255, 255, 255); padding: 0px 10px;font-size:.8em;font-weight:200;" data-reactid="14">Make a scene</span><span class="AddNewListingButton__desktop__17Luf AddNewListingButton_desktop" data-reactid="15">Make a scene</span></a></div>');
-      
-      $('#find-coach').on('click', function() {
-        SCN.scroll_to_anchor('scene-types');
-      });
-    }
-
-    $('.no-cover-photo.page-content').show();
-    // $('.page-content').find('.row').first().prepend('<a name="get-started"><h6 class="reasons" style="max-width:1100px">Get started</h6></a>' +
-     //    '<h2 class="centered">Start browsing listings below to find a coach today!<span style="font-style:italic;font-size:.7em;"></span></h2>');
-    }
-  }
-  
   SCN.customize_profile = function() {
     // convert linkedin profile text to link
     var $linkedin_label = $('b:contains("LinkedIn")');
@@ -800,20 +762,20 @@ footer a, footer a:hover, footer a:active, footer a:visited { color: white; }
   }
   
   SCN.cross_site_customizations = function() {    
-    // ---- swap out hour for 30 mins -----
+    // ---- swap out hour for mins -----
     $('article.page-content span').text(function (i, old) {
        return old
-           .replace('hour', '30 mins');
+           .replace('hour', '15 mins');
     });
     
     $('div.quantity-description').text(function (i, old) {
        return old
-           .replace('hour', '30 mins');
+           .replace('hour', '15 mins');
     });
     
     $('label.quantity-label').text(function (i, old) {
        return old
-           .replace('hours', '30 min blocks');
+           .replace('hours', '15 min blocks');
     });
     // -----------------------------------    
   }
@@ -1008,7 +970,7 @@ footer a, footer a:hover, footer a:active, footer a:visited { color: white; }
     
     SCN.customize_footer();
   
-    SCN.customize_nav();
+    // SCN.customize_nav();
     
     SCN.customize_about();
     

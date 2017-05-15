@@ -287,7 +287,7 @@ h6 {
     max-width: 100%;
     margin: 0 auto;
     position: relative;
-    padding:40px 80px 40px 80px;
+    padding:40px 80px 0px 80px;
     display: block;
 }
 
@@ -430,10 +430,10 @@ footer a, footer a:hover, footer a:active, footer a:visited { color: white; }
  '  <div class="main-footer-wrapper footer">' +
  '    <div>' +
  '      <li class="text-link">' +
- '        <a href="#">About scene.ly</a>' +
+ '        <a href="/infos/about">About scene.ly</a>' +
  '      </li>' +
  '      <li class="text-link">' +
- '        <a href="#" >Become a coach</a>' +
+ '        <a href="/en/infos/how_to_use" >Become a coach</a>' +
  '      </li>' +
  '      <li class="text-link">' +
  '        <a href="#" >Partnerships</a>' +
@@ -454,13 +454,13 @@ footer a, footer a:hover, footer a:active, footer a:visited { color: white; }
  '              </a>' +
  '            </li>' +
  '            <li class="text-link">' +
- '              <a target="_blank" href="#" >[link]</a>' +
+ '              <a target="_blank" href="/infos/about?enterprise=1" >Business</a>' +
  '            </li>' +
  '            <li class="text-link">' +
- '              <a href="#" >link</a>' +
+ '              <a href="#">link</a>' +
  '            </li>' +
  '            <li class="footer-last text-link">' +
- '              <a href="/contact.html" >Contact Us</a>' +
+ '              <a href="/en/user_feedbacks/new" >Contact</a>' +
  '            </li>' +
  '          </div>' +
  '        </div>' +
