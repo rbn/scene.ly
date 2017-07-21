@@ -1,7 +1,9 @@
   <style>
   /* custom nav */
-  .Topbar a[data-pid="About 0"], .Topbar a[data-pid="Invite new members 2"]  { display: none; }  
-  .MenuSection a[href="/infos/about"], .MenuSection a[href="/en/infos/about"], .MenuSection a[href="/invitations/new"] { display:none }
+  
+  /* .Topbar a[data-pid="About 0"] { display: none; } */
+  .Topbar a[data-pid="Invite new members 2"]  { display: none; }  
+  .MenuSection a[href="/invitations/new"] { display:none }
   
   .home-fluid-thumbnail-grid-author {display:none;}
   
@@ -307,9 +309,9 @@ h6 {
 
 .page-content { margin-top:25px; display: block; }
 
-div[class^='SearchBar'] {
+/* div[class^='SearchBar'] {
     display:none;  
-}
+} */
 
 .listing-author-avatar { display:none; }
 .listing-author-details { min-height:1em;margin-bottom:.375em;padding-left:0; }
@@ -356,6 +358,20 @@ footer a, footer a:hover, footer a:active, footer a:visited { color: white; }
   max-width:2em;
   max-height:2em;
 }
+
+
+ .home-categories-main   {
+   background-color: #ccddff;
+    line-height: 2em;
+    border: 1px solid white;
+    padding: 10px;
+    border-radius: 20px;
+ }
+ 
+.home-categories-main.selected {
+   background-color: silver;
+   color:white;
+ }
   </style>
 
   <script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -381,11 +397,15 @@ footer a, footer a:hover, footer a:active, footer a:visited { color: white; }
   SCN.root = ( location.pathname == "/" );
   
   SCN.authenticated = function() {
-    return !$('a[href="/en/signup"]').length > 0;
+    return ! ($('a[href="/en/signup"]').length > 0);
   }
   
   SCN.show_profiles = (function() {
     return window.location.href.indexOf("category") > -1;
+  })();
+  
+  SCN.show_marketplace_header = (function() {
+    return ! (window.location.href.indexOf("listings") > -1);
   })();
   
   SCN.get_qs_param = function getURLParameter(name) {
@@ -433,7 +453,7 @@ footer a, footer a:hover, footer a:active, footer a:visited { color: white; }
   SCN.get_enterprise_html = function() {
     return '<div><h1>Business Solutions</h1>' + 
               '<h2>Coming Soon</h2>' +   
-              '<p>Please contact <a href="mailto:info@scene.ly">scene.ly</a> to inquire about business solutions and services pertaining to executive and professional coaching</p>' +
+              '<p>Please contact <a href="mailto:rich@scene.ly">rich@scene.ly</a> to inquire about business solutions and services pertaining to executive and professional coaching</p>' +
               '</div>';
     };
   
@@ -482,34 +502,8 @@ footer a, footer a:hover, footer a:active, footer a:visited { color: white; }
  '        </div>' +
  '      </div></footer>';
   }
-  
-    SCN.get_why_use_html = function() {
-    return '<div id="why_use" class="main-use-cover use-cover">' +
-          '<div class="main-use-wrapper use-wrapper">' +
-           '<h6 class="reasons">Why use scene.ly</h6>' +
-           // '<h2 class="centered">Getting better through practice</h2>' + 
-           '<div class="club-bullet-header"><img class="club-bullet" src="http://icons.iconarchive.com/icons/custom-icon-design/pretty-office-7/128/Game-spades-icon.png" /><h2>Nothing can match the value of practicing with human to human interaction</h2></<div>' + 
-           '<div class="club-bullet-header"><img class="club-bullet" src="http://icons.iconarchive.com/icons/custom-icon-design/pretty-office-7/128/Game-spades-icon.png" /><h2>Executive coaching is too expensive for junior and mid-level professionals</h2></<div>' +
-           '<div class="club-bullet-header"><img class="club-bullet" src="http://icons.iconarchive.com/icons/custom-icon-design/pretty-office-7/128/Game-spades-icon.png" /><h2>It is difficult to find someone to practice with!</h2></<div>' +
-           '<div style="padding-top:50px;"><h3>scene.ly creates a marketplace for junior- and mid-level professionals to practice together, share ideas and feedback, and gain confidence through experience!</h3><p style="padding-top:20px">  Find professionals to informally practice with or use one of scene.ly\s certified coaches for a formal approach to professional practice today!</h3></p>';
-  }
-  
-  SCN.get_why_use_html_DEV = function() {
-    return '<div id="why_use" class="main-use-cover use-cover">' +
-          '<div class="main-use-wrapper use-wrapper">' +
-           '<h6 class="reasons">What is a scene?</h6>' +
-            '<h2 class="centered">Every interaction we have in life is a scene</h2>' + 
-            '<p>A job interview. A pitch. A public speaking event.  These are times when the spotlight is on us.  But often we don\'t practice for them, or we talk to a wall or mirror to run through our lines.  There is no substitute for human to human interaction, especially those with experience in a given area.</p>' + 
-           '<p>On scene.ly you can find scene partners to rehearse with.  Ask a Venture Capitalist what questions they would ask during a pitch.  Ask a product manager to run you through the gauntlet of an interview.  Practice your next keynote speech with an executive coach.</p></div>';
-  }
-  
-  SCN.get_what_is_html_DEV = function() {
-    return '<div id="what_is" class="main-what-cover what-cover">' +
-          '<div class="main-what-wrapper what-wrapper">' +
-           '<h6 class="reasons">what are scenes?</h6>' +
-            '<h2 class="centered">A scene is any interaction between two or more people that can be rehearsed</h2>' + 
-           '<p>A scene is ...</p>';
-  }
+
+
   
   SCN.get_how_it_works_html = function() {
     return '<div id="how_it_works" class="main-how-cover how-cover">' +
@@ -639,60 +633,22 @@ footer a, footer a:hover, footer a:active, footer a:visited { color: white; }
            '      </div>';
   }
   
-  SCN.customize_home = function() {
-        
-    if ( false) { //SCN.root && !SCN.authenticated() && !SCN.show_profiles ) {
-     
-
-        $('article.page-content').find('.wrapper').prepend(SCN.get_why_use_html());
-        $('#why_use').after( SCN.get_how_it_works_html() );        
-         $('#how_it_works').after( SCN.get_five_reasons_html() );
-    }          
+  SCN.customize_home = function() {  
     
-    if ( SCN.root ) {
-      
-      if ( false ) { // ! SCN.show_profiles ) {
-       // $('section.marketplace-lander').html('').append('<div class="coverimage">' +
-       //       '<figure class="marketplace-cover fluidratio">' +
-       //       '<div class="lander-content marketplace-lander-content">' +
-       //       '<h1 class="marketplace-lander-content-title">Practice for Professionals</h1>' +
-       //       '<p id="call-to-action" class="marketplace-lander-content-description">Hire peers, colleagues, and mentors to practice for your next interview, pitch, or presentation</p>' + 
-       //       '</div>' +
-       //       '</figure>' +
-       //       '</div>');
-       //       
-       // // hide listings and swap in the styled scenes html
-       // $('.home-toolbar').before( SCN.get_styled_scene_types() );
-       // $('.home-toolbar').hide().next().hide();
-      }
-      else {
-       //$('section.marketplace-lander').html('').append('<div class="coverimage">' + 
-       //    '<figure class="marketplace-cover-small fluidratio"></figure>' + 
-       //    '            <div class="coverimage-fade">' + 
-       //    '            <figure class="marketplace-cover-small-fade fluidratio"></figure>' + 
-       //    '            </div>' + 
-       //    '            </div>' + 
-       //    '            <div class="title-container">' + 
-       //    '            <div class="title-header-wrapper">' + 
-       //    '            <div class="marketplace-title-header">' + 
-       //    '            <h1>Find a coach</h1>' + 
-       //    '            </div>' + 
-       //    '            </div>' + 
-       //    '            </div>');
-
-      }
-        
-    if ( ! SCN.authenticated() ) {
-      $('p#call-to-action').append('<div id="find-coach" style="padding-top:15px;"><a id="find-coach" class="MenuMobile__offScreenHeaderNewListingButton__3ssaA AddNewListingButton AddNewListingButton__button__2H8yh" href="#" title="Make a scene" data-reactid="12" style="width: 200px;"><span class="AddNewListingButton__backgroundContainer__4Nn3Z AddNewListingButton_background" style="background-color: rgb(0, 204, 122); display: inline;" data-reactid="13"></span><span class="AddNewListingButton__mobile__2JhHF AddNewListingButton_mobile" style="color: rgb(255, 255, 255); padding: 0px 10px;font-size:.8em;font-weight:200;" data-reactid="14">Make a scene</span><span class="AddNewListingButton__desktop__17Luf AddNewListingButton_desktop" data-reactid="15">Make a scene</span></a></div>');
-      
-     //$('#find-coach').on('click', function() {
-     //  SCN.scroll_to_anchor('scene-types');
-     //});
+    if ( SCN.show_marketplace_header ) {
+      $('section.marketplace-lander').html('<div class="coverimage">' +
+          '<figure class="marketplace-cover fluidratio">' +
+          '<div class="lander-content marketplace-lander-content">' +
+          '<h1 class="marketplace-lander-content-title">Learn from the doers</h1>' +
+          '<p id="call-to-action" class="marketplace-lander-content-description">Find someone who\'s done it.  Talk one-on-one.  Make a scene.</p>' + 
+          '</div>' +
+          '</figure>' +
+          '</div>');
     }
+       
+    if ( ! SCN.authenticated() ) {
+      $('p#call-to-action').append('<div id="find-coach" style="padding-top:15px;"><a id="find-coach" class="MenuMobile__offScreenHeaderNewListingButton__3ssaA AddNewListingButton AddNewListingButton__button__2H8yh" href="https://coaches.scene.ly/en/signup" title="Make a scene" data-reactid="12" style="width: 400px;"><span class="AddNewListingButton__backgroundContainer__4Nn3Z AddNewListingButton_background" style="background-color: rgb(0, 204, 122); display: inline; max-width:18em;" data-reactid="13"></span><span class="AddNewListingButton__mobile__2JhHF AddNewListingButton_mobile" style="color: rgb(255, 255, 255); font-size:.8em;font-weight:200;max-width:18em;" data-reactid="14">Sign up to receive your free scene</span><span class="AddNewListingButton__desktop__17Luf AddNewListingButton_desktop" data-reactid="15">Sign up to receive your free scene</span></a></div>');
 
-    // $('.no-cover-photo.page-content').show();
-    // $('.page-content').find('.row').first().prepend('<a name="get-started"><h6 class="reasons" style="max-width:1100px">Get started</h6></a>' +
-     //    '<h2 class="centered">Start browsing listings below to find a coach today!<span style="font-style:italic;font-size:.7em;"></span></h2>');
     }
   }
 
@@ -785,6 +741,8 @@ footer a, footer a:hover, footer a:active, footer a:visited { color: white; }
        return old
            .replace('hours', '15 min blocks');
     });
+    
+    $('a[id="edit_link"').closest('.icon-with-text-container').hide();
     // -----------------------------------    
   }
   
@@ -794,12 +752,30 @@ footer a, footer a:hover, footer a:active, footer a:visited { color: white; }
   
   SCN.customize_nav = function() {
     
-    $('.Topbar a.Logo').attr('href', 'http://scene.ly');
-         $('a[data-pid="About 0"]').closest('div').css('width', function() {    
+      var top_link_about = "Marketplace";
+    
+     // change behavior of logo
+     $('.Topbar a.Logo').attr('href', 'http://scene.ly#scene-cats');
+    
+    
+    // make top nav div wider
+     $('.Topbar a[data-pid="About 0"]').closest('div').css('width', function() {    
       return parseInt($(this).css('width')) + 300;
      });
      
+     // change behavior of "new listing" button
      $('.Topbar a[href="/listings/new"], .Topbar a[href="/en/listings/new"]').attr('href', '/user_feedbacks/new');
+     
+     // Top Site Nav - expanded
+     //$('a[data-pid="About 0"]').before('<a  class="MenuPriority__priorityLink__moBbL" href="https://coaches.scene.ly" data-reactid="56">Coaches</a>');
+     $('a[data-pid="About 0"]').text(top_link_about).attr('href', 'http://coaches.scene.ly');
+     
+     // Top Site Nav - collapsed to left sidebar
+    // $('.MenuSection a[href="/"]').text('scene.ly').attr('href', 'http://scene.ly')
+    //  .after('<a class="MenuItem_link MenuItem__menuitemLink__2Eedg MenuMobile__menuSectionMenuItemLink__GfyW6" href="https://coaches.scene.ly" style="color:#4a90e2;" data-reactid="23">Coaches</a>');
+    
+    $('.MenuSection a[href="/infos/about"], .MenuSection a[href="/en/infos/about"]').text(top_link_about).attr('href', 'http://coaches.scene.ly');
+    
    
     
     return false;
@@ -869,6 +845,11 @@ footer a, footer a:hover, footer a:active, footer a:visited { color: white; }
       .closest('div').after('<div class=" FAQ MenuItem MenuItem__menuitem__3_-l_  MenuMobile__menuSectionMenuItem__2yMLC"><a class="MenuItem_link MenuItem__menuitemLink__2Eedg MenuMobile__menuSectionMenuItemLink__GfyW6" href="/infos/about?FAQ=1" style="color:#4a90e2;" data-reactid="27">FAQ</a></div>');
       
   }
+  
+  SCN.customize_contact_form = function() {
+    $('.new-feedback-form').prepend('<h2>Use this form to send feedback to scene.ly, inquire about becoming a coach, or report an issue.  Thank you!  If you prefer email please use <a href="mailto:rich@scene.ly">rich@scene.ly</a></h2>');
+  }
+
   
   SCN.customize_about = function() {        
     $('#about_page_content').html('<div class="info-bullet-header"><img src="http://www.myiconfinder.com/uploads/iconsets/acc8b94ae5e7383b0e7898928121321c-microphone.png" />' +
@@ -967,6 +948,12 @@ footer a, footer a:hover, footer a:active, footer a:visited { color: white; }
     
   }
   
+  SCN.complete_and_total_hacks = function() {
+    if (window.location.href.indexOf("401697") > -1) {
+     $('#listing-author-link').text('managed by scene.ly admin');
+    }
+  }
+  
   jQuery(function() { 
    
     SCN.customize_home();
@@ -996,6 +983,10 @@ footer a, footer a:hover, footer a:active, footer a:visited { color: white; }
     SCN.check_incoming_scroll();
     
     SCN.customize_listings();
+    
+    SCN.customize_contact_form();
+    
+    SCN.complete_and_total_hacks();
     
   });
   </script>
